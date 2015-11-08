@@ -1,1 +1,18 @@
-{"license":"MIT","file_hash":null,"name":"Semantic","version":"0.0.7","description":"This package has been written for an exercise at DTU university. At the current state of Dynamo, the author does not intend to maintain it.","group":"","keywords":null,"dependencies":[],"contents":"Categories.BuiltIn.Names - list of all the builtin category names, Categories.ByName - Returns Category(ies) from given Category name(s). Provide a string with value \"All\" to get all the Categories. (note: this is different from BuiltInCategory), Elements.Element.SetParameterByNameIfExists - Sets the parameter by name if the element has the parameter, Elements.Filter.ByParameterIfExists - seperates \"elements with a parameter\" from \"elements without a parameter\"","engine_version":"0.9.1.3071","engine":"dynamo","engine_metadata":"","site_url":"","repository_url":"https://github.com/baazoo/semantic-dynamo.git","contains_binaries":false,"node_libraries":[]}
+{
+  "license": "MIT",
+  "file_hash": null,
+  "name": "Semantic",
+  "version": "0.0.7",
+  "description": "This package has been written for an exercise at DTU university. At the current state of Dynamo, the author does not intend to maintain it.",
+  "group": "",
+  "keywords": null,
+  "dependencies": [],
+  "contents": "Categories.BuiltIn.Names - list of all the builtin category names, Categories.ByName - Returns Category(ies) from given Category name(s). Provide a string with value \"All\" to get all the Categories. (note: this is different from BuiltInCategory), Elements.Element.SetParameterByNameIfExists - Sets the parameter by name if the element has the parameter, Elements.Filter.ByParameterIfExists - seperates \"elements with a parameter\" from \"elements without a parameter\"",
+  "engine_version": "0.9.1.3071",
+  "engine": "dynamo",
+  "engine_metadata": "",
+  "site_url": "",
+  "repository_url": "https://github.com/baazoo/semantic-dynamo.git",
+  "contains_binaries": false,
+  "node_libraries": []
+}

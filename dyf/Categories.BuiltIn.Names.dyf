@@ -1,0 +1,21 @@
+<Workspace Version="0.9.1.3071" X="-438.543884857039" Y="-553.311821025693" zoom="1.12333432977541" Name="Categories.BuiltIn.Names" Description="list of all the builtin category names" ID="d3613623-3f0f-4301-ac74-63bfc13f4b2f" Category="Revit.Selection">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="d93735b3-8913-4ffb-b484-bb092935c845" type="PythonNodeModels.PythonNode" nickname="Python Script" x="492.392053301902" y="672.391241297223" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="0">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import BuiltInCategory
+
+OUT = filter(lambda i: "OST_" in i, dir(BuiltInCategory))</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Output guid="02c3b2f0-e407-490f-bfff-bc775904d1ee" type="Dynamo.Nodes.Output" nickname="Output" x="686.392053301902" y="672.391241297223" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="BuitIn Categories" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="d93735b3-8913-4ffb-b484-bb092935c845" start_index="0" end="02c3b2f0-e407-490f-bfff-bc775904d1ee" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

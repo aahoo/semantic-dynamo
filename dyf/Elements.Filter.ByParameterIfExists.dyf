@@ -1,0 +1,57 @@
+<Workspace Version="0.9.1.3071" X="-68.6369984400209" Y="85.6037121489763" zoom="0.721737128491325" Name="Elements.Filter.ByParameterIfExists" Description="seperates &quot;elements with a parameter&quot; from &quot;elements without a parameter&quot;" ID="271492fe-2d8b-4cc2-8fa6-e5a38aa2d43e" Category="Revit.Elements.Element">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="5b2c0948-c062-488e-8a81-9292c378c68d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="572.721144866896" y="33.2204663561372" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+items = UnwrapElement(IN[0])
+param = IN[1]
+passed = list()
+failed = list()
+for item in items:
+	try:
+		flag = True
+		for p in item.Parameters:
+			if p.Definition.Name == param:
+				passed.append(item)
+				flag = False
+				break
+		if flag == True:
+			failed.append(item)
+	except:
+		failed.append(item)
+
+OUT = list()
+OUT.append(passed)
+OUT.append(failed)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="3b7e2a3c-9adc-4b13-9408-d5fcf36784a1" type="Dynamo.Nodes.Symbol" nickname="Input" x="332.054478200229" y="4.22046635613719" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="elements" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="200dd68b-fd12-4e4d-bcb8-88da6d9ffd8d" type="Dynamo.Nodes.Symbol" nickname="Input" x="332.054478200229" y="88.2204663561372" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="parameterName" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="5bee4c4e-1606-4224-8472-aeab0376cec4" type="Dynamo.Nodes.Output" nickname="Output" x="1084.05447820023" y="0.00713302280385619" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="elements with parameter" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="cd4d903f-bc10-47d7-9789-78d626ab4c8c" type="Dynamo.Nodes.Output" nickname="Output" x="1084.05447820023" y="84.0071330228039" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="elements  without parameter" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="a85441f9-cf28-445f-9159-2d7954409512" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Extract Outputs" x="796.721144866896" y="37.4337996894705" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="outputs[0];&#xA;outputs[1];" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="5b2c0948-c062-488e-8a81-9292c378c68d" start_index="0" end="a85441f9-cf28-445f-9159-2d7954409512" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3b7e2a3c-9adc-4b13-9408-d5fcf36784a1" start_index="0" end="5b2c0948-c062-488e-8a81-9292c378c68d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="200dd68b-fd12-4e4d-bcb8-88da6d9ffd8d" start_index="0" end="5b2c0948-c062-488e-8a81-9292c378c68d" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a85441f9-cf28-445f-9159-2d7954409512" start_index="0" end="5bee4c4e-1606-4224-8472-aeab0376cec4" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a85441f9-cf28-445f-9159-2d7954409512" start_index="1" end="cd4d903f-bc10-47d7-9789-78d626ab4c8c" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-164.372329711914" eyeY="-9.71928310394287" eyeZ="12.7646827697754" lookX="9.292799949646" lookY="-10.0671997070313" lookZ="-44.9151992797852" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

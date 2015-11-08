@@ -1,0 +1,42 @@
+<Workspace Version="0.9.1.3071" X="-166.747862457784" Y="137.834998465332" zoom="0.619952718741733" Name="Elements.Element.SetParameterByNameIfExists" Description="Sets the parameter by name if the element has the parameter" ID="6274ac3b-dfda-489a-b5f3-db8b197ad47a" Category="Revit.Elements">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="b04aef5e-bb22-4baa-a8e6-dc147255e9c6" type="Dynamo.Nodes.DSFunction" nickname="Element.SetParameterByName" x="1201.43610361591" y="157.415509019461" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.SetParameterByName@string,var" />
+    <Dynamo.Nodes.Function guid="406f2b7d-3eab-4c3c-9075-554c0830ea85" type="Dynamo.Nodes.Function" nickname="FilterByParameterIfExists" x="760.102770282578" y="116.415509019461" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="271492fe-2d8b-4cc2-8fa6-e5a38aa2d43e" />
+      <Name value="Elements.Filter.ByParameterIfExists" />
+      <Description value="seperates &quot;elements with a parameter&quot; from &quot;elements without a parameter&quot;" />
+      <Inputs>
+        <Input value="elements" />
+        <Input value="parameterName" />
+      </Inputs>
+      <Outputs>
+        <Output value="elements with parameter" />
+        <Output value="elements  without parameter" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Symbol guid="94ce7dc1-a631-42e9-adae-64b913a09363" type="Dynamo.Nodes.Symbol" nickname="Input" x="519.436103615912" y="97.4155090194609" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="elements" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="f7ffe446-b6fa-4c7b-ad28-5b3e7c79bf0d" type="Dynamo.Nodes.Symbol" nickname="Input" x="519.436103615912" y="181.915509019461" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="parameterName" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="f28301a2-5d65-4fcd-b92b-4c39bdcc30ec" type="Dynamo.Nodes.Symbol" nickname="Input" x="760.102770282578" y="250.415509019461" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="value" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="5ff31f6e-81b1-4970-8bd8-85815bec9634" type="Dynamo.Nodes.Output" nickname="Output" x="1516.10277028258" y="157.415509019461" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="elements" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="b04aef5e-bb22-4baa-a8e6-dc147255e9c6" start_index="0" end="5ff31f6e-81b1-4970-8bd8-85815bec9634" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="406f2b7d-3eab-4c3c-9075-554c0830ea85" start_index="0" end="b04aef5e-bb22-4baa-a8e6-dc147255e9c6" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="94ce7dc1-a631-42e9-adae-64b913a09363" start_index="0" end="406f2b7d-3eab-4c3c-9075-554c0830ea85" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f7ffe446-b6fa-4c7b-ad28-5b3e7c79bf0d" start_index="0" end="406f2b7d-3eab-4c3c-9075-554c0830ea85" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f7ffe446-b6fa-4c7b-ad28-5b3e7c79bf0d" start_index="0" end="b04aef5e-bb22-4baa-a8e6-dc147255e9c6" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f28301a2-5d65-4fcd-b92b-4c39bdcc30ec" start_index="0" end="b04aef5e-bb22-4baa-a8e6-dc147255e9c6" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

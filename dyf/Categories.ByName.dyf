@@ -1,0 +1,44 @@
+<Workspace Version="0.9.1.3071" X="-1994.3769921488" Y="-482.243581201381" zoom="0.868382298777103" Name="Categories.ByName" Description="Returns Category(ies) from given Category name(s). Provide a string with value &quot;All&quot; to get all the Categories. (note: this is different from BuiltInCategory)" ID="a9861ce7-22d3-4fab-b4ae-5c0dbb0ba399" Category="Revit.Selection">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="00d88624-17a5-49d4-b87b-64767561168d" type="Dynamo.Nodes.Symbol" nickname="Input" x="2378.49300585335" y="778.158059657147" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="names" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="b105a484-448b-4527-96ed-dbb30d93ad2c" type="Dynamo.Nodes.Output" nickname="Output" x="2777.15967252002" y="778.158059657147" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="category" />
+    </Dynamo.Nodes.Output>
+    <PythonNodeModels.PythonNode guid="cdeb7a33-74c0-47af-aa61-adca4861d340" type="PythonNodeModels.PythonNode" nickname="Python Script" x="2553.15967252002" y="778.158059657147" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+clr.AddReference("RevitServices")
+
+from RevitServices.Persistence import DocumentManager
+
+name = IN[0]
+
+allCatsInDoc = DocumentManager.Instance.CurrentDBDocument.Settings.Categories
+
+if not name or name == "All":
+	category = allCatsInDoc
+	
+elif type(name) == list:
+	catFilter = set(name)
+	category = filter(lambda cat: cat.Name in catFilter, allCatsInDoc)
+	
+else:
+	for cat in allCatsInDoc:
+		if cat.Name == name:
+			category = cat
+			break
+	
+OUT = category</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="00d88624-17a5-49d4-b87b-64767561168d" start_index="0" end="cdeb7a33-74c0-47af-aa61-adca4861d340" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="cdeb7a33-74c0-47af-aa61-adca4861d340" start_index="0" end="b105a484-448b-4527-96ed-dbb30d93ad2c" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.3071" X="-335.517376668254" Y="51.6403445488147" zoom="0.615864536094217" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="False">
+<Workspace Version="0.9.1.3071" X="-26.2553838203695" Y="92.091552868143" zoom="0.761232537713866" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
   <NamespaceResolutionMap>
     <ClassMap partialName="Element" resolvedName="Revit.Elements.Element" assemblyName="RevitNodes.dll" />
     <ClassMap partialName="Elements" resolvedName="Revit.Elements" assemblyName="LunchBox.dll" />
@@ -29,13 +29,13 @@
         <Output value="elements" />
       </Outputs>
     </Dynamo.Nodes.Function>
-    <Dynamo.Nodes.CodeBlockNodeModel guid="53a28433-426f-440d-b869-a0f59c76ed7f" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="CCSClassCode_Type CSV file" x="312.399407957431" y="242.991990046247" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;https://goo.gl/vVF4x8&quot;;" ShouldFocus="false" />
-    <Dynamo.Nodes.StringInput guid="e1f8d9bd-7ab3-41eb-9243-7faefccee205" type="Dynamo.Nodes.StringInput" nickname="Parameter Name" x="705.066074624098" y="348.778656712914" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+    <Dynamo.Nodes.CodeBlockNodeModel guid="53a28433-426f-440d-b869-a0f59c76ed7f" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="CCSClassCode_Type CSV file" x="313.454166742856" y="465.61625007724" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;https://goo.gl/vVF4x8&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.StringInput guid="e1f8d9bd-7ab3-41eb-9243-7faefccee205" type="Dynamo.Nodes.StringInput" nickname="Parameter Name" x="706.120833409523" y="571.402916743907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
       <System.String>CCSClassCode_Type</System.String>
       <System.String value="CCSClassCode_Type" />
     </Dynamo.Nodes.StringInput>
-    <DSCoreNodesUI.WebRequest guid="67433b90-cd89-4e15-981f-c8615bfd3b05" type="DSCoreNodesUI.WebRequest" nickname="Web Request" x="705.066074624098" y="238.778656712914" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
-    <PythonNodeModels.PythonNode guid="70436f3c-02ea-410b-8810-7b6e2cd175c6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="954.399407957431" y="313.778656712914" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3">
+    <DSCoreNodesUI.WebRequest guid="67433b90-cd89-4e15-981f-c8615bfd3b05" type="DSCoreNodesUI.WebRequest" nickname="Web Request" x="706.120833409523" y="461.402916743907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <PythonNodeModels.PythonNode guid="70436f3c-02ea-410b-8810-7b6e2cd175c6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="955.454166742856" y="536.402916743907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3">
       <Script>import System
 
 import clr
@@ -44,8 +44,14 @@ clr.AddReference("RevitServices")
 
 from Autodesk.Revit.DB import FilteredElementCollector
 from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
 
+# Get the document
 doc = DocumentManager.Instance.CurrentDBDocument
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
 cats = doc.Settings.Categories
 
 # lookup tabe accepts csv format such as: foo,bar
@@ -74,16 +80,19 @@ for cat in cats:
 		except:
 			pass
 			
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()	
+
 OUT = modifiedElements</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Nodes.StringInput guid="c2a18cce-c087-4a44-a83f-28c1c7375fe1" type="Dynamo.Nodes.StringInput" nickname="Include Only" x="705.066074624098" y="431.778656712914" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+    <Dynamo.Nodes.StringInput guid="c2a18cce-c087-4a44-a83f-28c1c7375fe1" type="Dynamo.Nodes.StringInput" nickname="Include Only" x="706.120833409523" y="654.402916743907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
       <System.String>WallType
 FamilySymbol</System.String>
       <System.String value="WallType&#xD;&#xA;FamilySymbol" />
     </Dynamo.Nodes.StringInput>
-    <Dynamo.Nodes.Watch guid="de06b2e5-a8a2-4f1c-a9ea-5500ec5fb2a1" type="Dynamo.Nodes.Watch" nickname="Modified (Type) Elements" x="1178.39940795743" y="313.778656712914" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.Watch guid="de06b2e5-a8a2-4f1c-a9ea-5500ec5fb2a1" type="Dynamo.Nodes.Watch" nickname="Modified (Type) Elements" x="1179.45416674286" y="536.402916743907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
     <Dynamo.Nodes.Watch guid="0b082ae6-b49c-4fba-8e18-ecfe4ccca94b" type="Dynamo.Nodes.Watch" nickname="Modified Elements" x="1225.40124689482" y="18.7353315367986" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
-    <DSRevitNodesUI.ElementTypes guid="dc9e81c5-3d18-41a8-9678-fee360f5e4da" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="1014.38737182663" y="514.076950198565" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="324:WallType" />
+    <DSRevitNodesUI.ElementTypes guid="dc9e81c5-3d18-41a8-9678-fee360f5e4da" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="1015.44213061206" y="736.701210229558" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="324:WallType" />
   </Elements>
   <Connectors>
     <Dynamo.Models.ConnectorModel start="aca66fc6-e4f0-43fd-8921-40ddc6d42e71" start_index="0" end="94160212-f23b-42f2-84cf-9cfcced3f577" end_index="0" portType="0" />
@@ -98,11 +107,11 @@ FamilySymbol</System.String>
     <Dynamo.Models.ConnectorModel start="c2a18cce-c087-4a44-a83f-28c1c7375fe1" start_index="0" end="70436f3c-02ea-410b-8810-7b6e2cd175c6" end_index="2" portType="0" />
   </Connectors>
   <Notes>
-    <Dynamo.Models.NoteModel guid="083d2cd9-f690-499a-9d1e-7e9116ccd2fc" text="I used Google sheets to host a lookup table in CSV format. There should be two columns; first for the element type and second for CCSClassCode_Type.&#xD;&#xA;example:&#xD;&#xA;Walls,AD&#xD;&#xA;Columns,ULD&#xD;&#xA;&#xD;&#xA;It is best to create your CSV file in a spreadsheet editor to avoide syntax errors due to hidden whitespaces." x="315.535449080708" y="339.649811959218" />
-    <Dynamo.Models.NoteModel guid="0114a27b-5b00-4dbc-af1f-88dddbf02c05" text="To include elements of a specific type, add them to the &quot;Include Only&quot; box one item per line. List of Elements Types can be obtained from &quot;Element Types&quot; node." x="706.813359824055" y="521.415999879328" />
+    <Dynamo.Models.NoteModel guid="083d2cd9-f690-499a-9d1e-7e9116ccd2fc" text="I used Google sheets to host a lookup table in CSV format. There should be two columns; first for the element type and second for CCSClassCode_Type.&#xD;&#xA;example:&#xD;&#xA;Walls,AD&#xD;&#xA;Columns,ULD&#xD;&#xA;&#xD;&#xA;It is best to create your CSV file in a spreadsheet editor to avoide syntax errors due to hidden whitespaces." x="316.590207866133" y="562.274071990211" />
+    <Dynamo.Models.NoteModel guid="0114a27b-5b00-4dbc-af1f-88dddbf02c05" text="To include elements of a specific type, add them to the &quot;Include Only&quot; box one item per line. List of Elements Types can be obtained from &quot;Element Types&quot; node." x="707.86811860948" y="744.040259910321" />
   </Notes>
   <Annotations>
-    <Dynamo.Models.AnnotationModel guid="9f406169-6e1d-42fd-aba2-031ba8b16779" annotationText="CCS Location" left="303.401246894822" top="-68.2646684632014" width="1058.66666666666" height="263.666666666667" fontSize="14" InitialTop="-38.2646684632014" InitialHeight="263.666666666667" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Models.AnnotationModel guid="9f406169-6e1d-42fd-aba2-031ba8b16779" annotationText="CCS Location" left="303.401246894822" top="-68.2646684632014" width="1124.66666666666" height="464.666666666667" fontSize="14" InitialTop="-38.2646684632014" InitialHeight="263.666666666667" TextblockHeight="20" backgrouund="#FFC1D676">
       <Models ModelGuid="aca66fc6-e4f0-43fd-8921-40ddc6d42e71" />
       <Models ModelGuid="949ff70b-9eb2-4bed-893e-a67d07ef3363" />
       <Models ModelGuid="59b1af45-d737-426f-b327-b8e679ebd3ea" />
@@ -110,7 +119,7 @@ FamilySymbol</System.String>
       <Models ModelGuid="94160212-f23b-42f2-84cf-9cfcced3f577" />
       <Models ModelGuid="0b082ae6-b49c-4fba-8e18-ecfe4ccca94b" />
     </Dynamo.Models.AnnotationModel>
-    <Dynamo.Models.AnnotationModel guid="c736422e-843d-43b2-8b7a-582dd586d2d6" annotationText="CCS Class Code for Types" left="302.399407957431" top="208.778656712914" width="1054.66666666667" height="399.970676499747" fontSize="14" InitialTop="238.778656712914" InitialHeight="304.333333333333" TextblockHeight="20" backgrouund="#FFA4E1FF">
+    <Dynamo.Models.AnnotationModel guid="c736422e-843d-43b2-8b7a-582dd586d2d6" annotationText="CCS Class Code for Types" left="303.454166742856" top="431.402916743907" width="1176" height="482.666666666667" fontSize="14" InitialTop="461.402916743907" InitialHeight="304.333333333333" TextblockHeight="20" backgrouund="#FFA4E1FF">
       <Models ModelGuid="53a28433-426f-440d-b869-a0f59c76ed7f" />
       <Models ModelGuid="e1f8d9bd-7ab3-41eb-9243-7faefccee205" />
       <Models ModelGuid="67433b90-cd89-4e15-981f-c8615bfd3b05" />
